@@ -1,4 +1,14 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+std::string FailoSkaitymas(std::string failoPav){
+    std::ifstream failas(failoPav);
+    std::stringstream buffer;
+    buffer << failas.rdbuf();
+    return buffer.str();
+}
 
 int main() {
 
@@ -23,17 +33,36 @@ int main() {
     }
 
     std::string tekstas;
+    int variantas;
     switch(choice){
         case 1:
         std::cout << "Įveskite teksto kombinaciją, kuria norite užhashinti: ";
         std::cin >> tekstas;
         case 2:
-        std::cout << "Pasirinkite .txt failą, kurį norite užhashinti: ";
+        std::cout << "Pasirinkite .txt failą, kurį norite užhashinti: " << std::endl;
         std::cout << "1 - Vieno_simobolio.txt" << std::endl;
         std::cout << "2 - >1000_simboliu.txt" << std::endl;
         std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
-    }
-    
+
+        bool patikra = false;
+        while (!patikra){
+            std::cout<< "Jūsų pasirinkimas: ";
+            std::cin >> variantas;
+            if(variantas < 1 || variantas > 3){
+                std::cout << "Klaida! Įveskite skaičių." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            else {
+                patikra = true;
+            }
+        }
+        switch(variantas){
+            case 1 : tekstas = FailoSkaitymas("Vieno_simobolio.txt"); break;
+            case 2 : tekstas = FailoSkaitymas(">1000_simboliu.txt"); break;
+            case 3 : tekstas = FailoSkaitymas(">1000_skirtingu_simboliu.txt"); break;
+        }
+    } 
     return 0;
 
 }
