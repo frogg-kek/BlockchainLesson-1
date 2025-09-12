@@ -25,7 +25,7 @@ int main() {
 
     switch(choice){
         case 1:
-        stfd::cout << "Įveskite teksto kombinaciją, kuria norite užhashinti: ";
+        std::cout << "Įveskite teksto kombinaciją, kuria norite užhashinti: ";
     }
     return 0;
 
