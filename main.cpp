@@ -1,7 +1,6 @@
 #include <iostream>
 
 int main() {
-    std::string text;
 
     std::cout << "Pasirinkite ką norėtumete hashuoti:" << std::endl;
     std::cout << "1 - Įrašytą tekstą" << std::endl;
@@ -23,10 +22,18 @@ int main() {
         }
     }
 
+    std::string tekstas;
     switch(choice){
         case 1:
         std::cout << "Įveskite teksto kombinaciją, kuria norite užhashinti: ";
+        std::cin >> tekstas;
+        case 2:
+        std::cout << "Pasirinkite .txt failą, kurį norite užhashinti: ";
+        std::cout << "1 - Vieno_simobolio.txt" << std::endl;
+        std::cout << "2 - >1000_simboliu.txt" << std::endl;
+        std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
     }
+    
     return 0;
 
 }
