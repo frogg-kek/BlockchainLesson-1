@@ -1,7 +1,7 @@
 CXX = g++
-CXXFLAGS = -std=c++23 -Wall -Wextra
+CXXFLAGS = -std=c++20 -Wall -Wextra
 TARGET = main
-SRC = main.cpp
+SRC = main.cpp functions.cpp
 
 all: $(TARGET)
 

@@ -1,4 +1,4 @@
-#include "functions.cpp"
+#include "header.h"
     
 
 int main() {
