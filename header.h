@@ -11,5 +11,6 @@ const int HASH_DYDIS = 32;
 
 std::string FailoSkaitymas(std::string failoPav);
 std::string HashFunkcija(std::string tekstas);
+void GeneruotiFailus();
 
 #endif
