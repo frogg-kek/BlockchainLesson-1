@@ -6,6 +6,8 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <chrono>
+#include <random>
 
 const int HASH_DYDIS = 32;
 
