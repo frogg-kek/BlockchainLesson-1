@@ -1,5 +1,44 @@
 #include "header.h"
 
+void GeneruotiFailus(){
+
+    std::ofstream fileA("Vieno_simobolio.txt");
+    fileA << 'a';
+    fileA.close();
+
+    const int size = 1001;
+    const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, chars.size() - 1);
+
+    std::string randomStr;
+    randomStr.reserve(size);
+    for (int i = 0; i < size; ++i) {
+        randomStr += chars[dis(gen)];
+    }
+
+    std::ofstream fileRandom(">1000_simboliu.txt");
+    fileRandom << randomStr;
+    fileRandom.close();
+
+  
+    std::string randomStr2 = randomStr;
+    randomStr2[size / 2] = 'X';
+
+    std::ofstream fileDiffA(">1000_skirtingu_simboliu_1.txt");
+    fileDiffA << randomStr;
+    fileDiffA.close();
+
+    std::ofstream fileDiffB(">1000_skirtingu_simboliu_2.txt");
+    fileDiffB << randomStr2;
+    fileDiffB.close();
+
+    std::ofstream fileEmpty("failas_empty.txt");
+    fileEmpty.close();
+
+}
+
 std::string FailoSkaitymas(std::string failoPav){
     
     std::ifstream failas(failoPav);
