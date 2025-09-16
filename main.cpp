@@ -3,6 +3,21 @@
 
 int main() {
 
+    std::cout << "Sveiki atvykę į paprastą hash funkcijos generatorių!" << std::endl;
+    std::cout << "Jeigu programą paleidote pirmą kartą, spauskite - 1" << std::endl;
+    std::cout << "Jeigu jau dirbote ir nenorite generuoti naujas reikšmes failams,  spauskite - 2" << std::endl;
+    
+    int generacija;
+    std::cout << "Jūsų pasirinkimas: ";
+    std::cin >> generacija;
+    if(generacija == 1) GeneruotiFailus();
+
+    std::cout << std::endl;
+
+    std::cout << "Galite pradeti dirbti!" << std::endl;
+
+    std::cout << std::endl;
+
     std::cout << "Pasirinkite ką norėtumete hashuoti:" << std::endl;
     std::cout << "1 - Įrašytą tekstą" << std::endl;
     std::cout << "2 - .txt failą" << std::endl;
