@@ -49,8 +49,7 @@ int main() {
             std::cout << "Pasirinkite .txt failą, kurį norite užhashinti: " << std::endl;
             std::cout << "1 - Vieno_simobolio.txt" << std::endl;
             std::cout << "2 - >1000_simboliu.txt" << std::endl;
-            std::cout << "3 - >1000_skirtingu_simboliu_1.txt" << std::endl;
-            std::cout << "4 - >1000_skirtingu_simboliu_2.txt" << std::endl;
+            std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
             std::cout << "5 - failas_empty.txt" << std::endl;
 
 
@@ -58,7 +57,7 @@ int main() {
         while (!patikra){
             std::cout<< "Jūsų pasirinkimas: ";
             std::cin >> variantas;
-            if(variantas < 1 || variantas > 5){
+            if(variantas < 1 || variantas > 4){
                 std::cout << "Klaida! Įveskite skaičių." << std::endl;
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -70,9 +69,8 @@ int main() {
         switch(variantas){
             case 1 : tekstas = FailoSkaitymas("Vieno_simobolio.txt"); break;
             case 2 : tekstas = FailoSkaitymas(">1000_simboliu.txt"); break;
-            case 3 : tekstas = FailoSkaitymas(">1000_skirtingu_simboliu_1.txt"); break;
-            case 4 : tekstas = FailoSkaitymas(">1000_skirtingu_simboliu_2.txt"); break;
-            case 5 : tekstas = FailoSkaitymas("failas_empty.txt"); break;
+            case 3 : tekstas = FailoSkaitymas(">1000_skirtingu_simboliu.txt"); break;
+            case 4 : tekstas = FailoSkaitymas("failas_empty.txt"); break;
         }
     }
     std::string hash = HashFunkcija(tekstas);

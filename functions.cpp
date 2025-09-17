@@ -26,11 +26,8 @@ void GeneruotiFailus(){
     std::string randomStr2 = randomStr;
     randomStr2[size / 2] = 'X';
 
-    std::ofstream fileDiffA(">1000_skirtingu_simboliu_1.txt");
-    fileDiffA << randomStr;
-    fileDiffA.close();
 
-    std::ofstream fileDiffB(">1000_skirtingu_simboliu_2.txt");
+    std::ofstream fileDiffB(">1000_skirtingu_simboliu.txt");
     fileDiffB << randomStr2;
     fileDiffB.close();
 
