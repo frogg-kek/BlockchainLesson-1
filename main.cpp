@@ -50,7 +50,7 @@ int main() {
             std::cout << "1 - Vieno_simobolio.txt" << std::endl;
             std::cout << "2 - >1000_simboliu.txt" << std::endl;
             std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
-            std::cout << "5 - failas_empty.txt" << std::endl;
+            std::cout << "4 - failas_empty.txt" << std::endl;
 
 
         bool patikra = false;
