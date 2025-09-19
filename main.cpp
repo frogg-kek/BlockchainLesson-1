@@ -61,8 +61,6 @@ int main() {
                 std::cout << "4 - failas_empty.txt" << std::endl;
             }
 
-
-
         bool patikra2 = false;
         while (!patikra2){
             std::cout<< "Jūsų pasirinkimas: ";
@@ -76,6 +74,7 @@ int main() {
                 patikra2 = true;
             }
         }
+
         switch(variantas){
             case 1 : tekstas = FailoSkaitymas("Vieno_simobolio.txt"); break;
             case 2 : tekstas = FailoSkaitymas(">1000_simboliu.txt"); break;
@@ -105,6 +104,7 @@ int main() {
             patikrinimas = true;
         }
     }
+
     switch(koalicijosPasirinkimas){
         case 1:
             size_t length;
@@ -117,7 +117,6 @@ int main() {
             break;
     }
 
-    
     return 0;
     // 904418064
     // 904418064

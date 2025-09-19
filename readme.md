@@ -15,3 +15,17 @@
 | failas_empty.txt              | 0d7e13c85d36069fd5e05d9b20873e1ad0ec20aa49d7fd698e9ca24c54067e5c|
 | failas_empty.txt.             | 0d7e13c85d36069fd5e05d9b20873e1ad0ec20aa49d7fd698e9ca24c54067e5c|
 
+# KOLIZIJŲ TESTAS
+
+|         Porų Skaičius         |                       Kolizijų skaičius                         |
+|-------------------------------|-----------------------------------------------------------------|
+| 10                            |                               0                                 |
+| 100                           |                               0                                 |
+| 500                           |                               0                                 |
+| 1000                          |                               0                                 |
+
+### Nuotraukos patvirtinimui
+
+![alt text](<Screenshot 2025-09-19 at 15.23.00.png>)
+![alt text](<Screenshot 2025-09-19 at 15.23.13.png>)
+![alt text](<Screenshot 2025-09-19 at 15.23.26.png>)
