@@ -3,19 +3,10 @@
 
 int main() {
 
-    std::cout << "Sveiki atvykę į paprastą hash funkcijos generatorių!" << std::endl;
-    std::cout << "Jeigu programą paleidote pirmą kartą, spauskite - 1" << std::endl;
-    std::cout << "Jeigu jau dirbote ir nenorite generuoti naujas reikšmes failams,  spauskite - 2" << std::endl;
-    
-    int generacija;
-    std::cout << "Jūsų pasirinkimas: ";
-    std::cin >> generacija;
-    if(generacija == 1) GeneruotiFailus();
-
     std::cout << std::endl;
-
-    std::cout << "Galite pradeti dirbti!" << std::endl;
-
+    
+    std::cout << "Sveiki atvykę į paprastą hash funkcijos generatorių!" << std::endl;
+    
     std::cout << std::endl;
 
     std::cout << "Pasirinkite ką norėtumete hashuoti:" << std::endl;
@@ -46,15 +37,34 @@ int main() {
             std::cin >> tekstas;
             break;
         case 2:
-            std::cout << "Pasirinkite .txt failą, kurį norite užhashinti: " << std::endl;
-            std::cout << "1 - Vieno_simobolio.txt" << std::endl;
-            std::cout << "2 - >1000_simboliu.txt" << std::endl;
-            std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
-            std::cout << "4 - failas_empty.txt" << std::endl;
+            std::cout << "Ar norite generuoti naujus failus? (1 - Taip, 2 - Ne): ";
+            int naujiFailai;
+            bool patikra = false;
+            while (!patikra){
+                std::cin >> naujiFailai;
+                if(naujiFailai < 1 || naujiFailai > 2){
+                    std::cout << "Klaida! Įveskite skaičių." << std::endl;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                }
+                else {
+                    patikra = true;
+                }
+            }
+            if(naujiFailai == 1) GeneruotiFailus();
+
+            else {
+                std::cout << "Pasirinkite .txt failą, kurį norite užhashinti: " << std::endl;
+                std::cout << "1 - Vieno_simobolio.txt" << std::endl;
+                std::cout << "2 - >1000_simboliu.txt" << std::endl;
+                std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
+                std::cout << "4 - failas_empty.txt" << std::endl;
+            }
 
 
-        bool patikra = false;
-        while (!patikra){
+
+        bool patikra2 = false;
+        while (!patikra2){
             std::cout<< "Jūsų pasirinkimas: ";
             std::cin >> variantas;
             if(variantas < 1 || variantas > 4){
@@ -63,7 +73,7 @@ int main() {
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
             else {
-                patikra = true;
+                patikra2 = true;
             }
         }
         switch(variantas){
