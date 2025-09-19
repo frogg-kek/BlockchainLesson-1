@@ -76,6 +76,36 @@ int main() {
     std::string hash = HashFunkcija(tekstas);
     std::cout << hash << std::endl;
 
+    std::cout << std::endl;
+
+    std::cout << "Ar norėtumėte patikrinti koalicijos atsiradimą? (1 - Taip, 2 - Ne): ";
+    
+    int koalicijosPasirinkimas;
+    bool patikrinimas = false;
+
+    while(!patikrinimas){
+        std::cin >> koalicijosPasirinkimas;
+        if(koalicijosPasirinkimas < 1 || koalicijosPasirinkimas > 2){
+            std::cout << "Klaida! Įveskite skaičių." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else {
+            patikrinimas = true;
+        }
+    }
+    switch(koalicijosPasirinkimas){
+        case 1:
+            size_t length;
+            std::cout << "Įveskite simbolių kiekį, kurį norėtumėte sugeneruoti: ";
+            std::cin >> length;
+            KoalizijosPatikra(length);
+            break;
+        case 2:
+            std::cout << "Programa baigė darbą." << std::endl;
+            break;
+    }
+
     
     return 0;
     // 904418064

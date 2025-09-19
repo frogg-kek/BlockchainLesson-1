@@ -1,5 +1,31 @@
 #include "header.h"
 
+std::string random_string_generatorius(size_t ilgis) {
+    const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    std::random_device random_device;
+    std::mt19937 generator(random_device());
+    std::uniform_int_distribution<> dis(0, chars.size() - 1);
+
+    std::string randomStr;
+    randomStr.reserve(ilgis);
+    for (size_t i = 0; i < ilgis; ++i) {
+        randomStr += chars[dis(generator)];
+    }
+    return randomStr;
+}
+
+void KoalizijosPatikra(size_t length){
+    int koaliziju_kiekis = 0;
+    for(int i = 0; i < 100000; ++i){
+        std::string randomStr1 = random_string_generatorius(length);
+        std::string randomStr2 = random_string_generatorius(length);
+        if(HashFunkcija(randomStr1) == HashFunkcija(randomStr2)){
+            koaliziju_kiekis++;
+        }
+    }
+    std::cout << "Koalizaciju kiekis " << length << " simboliu: " << koaliziju_kiekis << std::endl;
+}
+
 void GeneruotiFailus(){
 
     std::ofstream fileA("Vieno_simobolio.txt");
