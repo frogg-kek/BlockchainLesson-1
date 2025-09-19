@@ -83,12 +83,13 @@ int main() {
             case 4 : tekstas = FailoSkaitymas("failas_empty.txt"); break;
         }
     }
+
     std::string hash = HashFunkcija(tekstas);
     std::cout << hash << std::endl;
 
     std::cout << std::endl;
 
-    std::cout << "Ar norėtumėte patikrinti koalicijos atsiradimą? (1 - Taip, 2 - Ne): ";
+    std::cout << "Ar norėtumėte patikrinti koalizijų atsiradimą? (1 - Taip, 2 - Ne): ";
     
     int koalicijosPasirinkimas;
     bool patikrinimas = false;
