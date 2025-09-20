@@ -14,6 +14,66 @@ std::string random_string_generatorius(size_t ilgis) {
     return randomStr;
 }
 
+std::string Keitimas_vieno_simbolio(std::string& tekstas) {
+    std::string naujas = tekstas;   
+    std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    std::mt19937 gen(std::random_device{}());
+    std::uniform_int_distribution<size_t> dis(0, chars.size() - 1);
+    std::uniform_int_distribution<size_t> char_dis(0, tekstas.size() - 1);
+    size_t pozicija = char_dis(gen);
+    char naujas_simbolis;
+    do {
+        naujas_simbolis = chars[dis(gen)];
+    } while (naujas_simbolis == tekstas[pozicija]);
+    naujas[pozicija] = naujas_simbolis;
+    return naujas;
+}
+double diff_bits(const std::string& h1, const std::string& h2) {
+    int bit_diff = 0;
+    for (size_t i = 0; i < h1.size(); ++i) {
+        unsigned char c1 = h1[i], c2 = h2[i];
+        for (int b = 0; b < 8; ++b)
+            bit_diff += ((c1 >> b) & 1) != ((c2 >> b) & 1);
+    }
+    return bit_diff * 100.0 / (h1.size() * 8);
+}
+
+double diff_hex(const std::string& h1, const std::string& h2) {
+    int diff = 0;
+    for (size_t i = 0; i < h1.size(); ++i)
+        diff += h1[i] != h2[i];
+    return diff * 100.0 / h1.size();
+}
+
+void TestuokLavinosEfekta(
+    std::function<std::string(const std::string&)> HashFunkcija, size_t poru_skaicius, size_t ilgis) {
+    double bit_min = 100, bit_max = 0, bit_sum = 0;
+    double hex_min = 100, hex_max = 0, hex_sum = 0;
+
+    for (size_t i = 0; i < poru_skaicius; ++i) {
+        std::string s1 = random_string_generatorius(ilgis);
+        std::string s2 = Keitimas_vieno_simbolio(s1);
+
+        std::string h1 = HashFunkcija(s1);
+        std::string h2 = HashFunkcija(s2);
+
+        double bit_d = diff_bits(h1, h2);
+        double hex_d = diff_hex(h1, h2);
+
+        bit_min = std::min(bit_min, bit_d);
+        bit_max = std::max(bit_max, bit_d);
+        bit_sum += bit_d;
+
+        hex_min = std::min(hex_min, hex_d);
+        hex_max = std::max(hex_max, hex_d);
+        hex_sum += hex_d;
+    }
+
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "Bitu lygmenyje - Min: " << bit_min << "%, Max: " << bit_max << "%, Vidurkis: " << (bit_sum / poru_skaicius) << "%\n";
+    std::cout << "Hex lygmenyje - Min: " << hex_min << "%, Max: " << hex_max << "%, Vidurkis: " << (hex_sum / poru_skaicius) << "%\n";
+}
+
 void KoalizijosPatikra(size_t length){
     int koaliziju_kiekis = 0;
     for(int i = 0; i < 100000; ++i){

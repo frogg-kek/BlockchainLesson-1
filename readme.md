@@ -24,9 +24,13 @@
 | 500                           |                               0                                 |
 | 1000                          |                               0                                 |
 
-### Nuotraukos patvirtinimui
+### NUOTRAUKOS PATVIRTINIMUI
 
 ![alt text](<Screenshot 2025-09-19 at 15.23.00.png>)
 ![alt text](<Screenshot 2025-09-19 at 15.23.13.png>)
 ![alt text](<Screenshot 2025-09-19 at 15.23.26.png>)
 ![alt text](<Screenshot 2025-09-19 at 15.27.14.png>)
+
+# LAVINOS EFEKTO TESTAS
+
+![alt text](<Screenshot 2025-09-20 at 15.29.28.png>)

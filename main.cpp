@@ -117,6 +117,29 @@ int main() {
             break;
     }
 
+    std::cout << "Ar norėtumėte atlikti lavinos efekto testą (100k porų)? (1 - Taip, 2 - Ne): ";
+    int lavinosPasirinkimas;
+    bool patikrinimas2 = false;
+    while(!patikrinimas2){
+        std::cin >> lavinosPasirinkimas;
+        if(lavinosPasirinkimas < 1 || lavinosPasirinkimas > 2){
+            std::cout << "Klaida! Įveskite skaičių." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else {
+            patikrinimas2 = true;
+        }
+    }
+    switch(lavinosPasirinkimas){
+        case 1:
+            TestuokLavinosEfekta(HashFunkcija);
+            break;
+        case 2:
+            std::cout << "Programa baigė darbą." << std::endl;
+            break;
+    }
+
     return 0;
     // 904418064
     // 904418064
