@@ -37,6 +37,7 @@ int main() {
             std::cin >> tekstas;
             break;
         case 2:
+            {
             std::cout << "Ar norite generuoti naujus failus? (1 - Taip, 2 - Ne): ";
             int naujiFailai;
             bool patikra = false;
@@ -81,6 +82,8 @@ int main() {
             case 3 : tekstas = FailoSkaitymas(">1000_skirtingu_simboliu.txt"); break;
             case 4 : tekstas = FailoSkaitymas("failas_empty.txt"); break;
         }
+        }
+        break;
     }
 
     std::string hash = HashFunkcija(tekstas);
@@ -107,10 +110,12 @@ int main() {
 
     switch(koalicijosPasirinkimas){
         case 1:
-            size_t length;
+            {
+            int length;
             std::cout << "Įveskite simbolių kiekį, kurį norėtumėte sugeneruoti: ";
             std::cin >> length;
             KoalizijosPatikra(length);
+            }
             break;
         case 2:
             std::cout << "Programa baigė darbą." << std::endl;
@@ -136,6 +141,35 @@ int main() {
             TestuokLavinosEfekta(HashFunkcija);
             break;
         case 2:
+            std::cout << "Testas atsisakytas." << std::endl;
+            break;
+    }
+    std::cout << "Ar noretumete atlikti negriztamumo demonstracija? (1 - Taip, 2 - Ne): ";
+    int negriztamumoPasirinkimas;
+    bool patikrinimas3 = false;
+    while(!patikrinimas3){
+        std::cin >> negriztamumoPasirinkimas;
+        if(negriztamumoPasirinkimas < 1 || negriztamumoPasirinkimas > 2){
+            std::cout << "Klaida! Įveskite skaičių." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else {
+            patikrinimas3 = true;
+        }
+    }
+    switch(negriztamumoPasirinkimas){
+        case 1:
+            {
+            std::string inputas;
+            std::cout << "Įveskite norimą tekstą: ";
+            std::cin >> inputas;
+            TestHiding(inputas);
+            TestPuzzleFriendliness(inputas);
+            }
+            break;
+        case 2:
+            std::cout << "Testas atsisakytas." << std::endl;
             std::cout << "Programa baigė darbą." << std::endl;
             break;
     }

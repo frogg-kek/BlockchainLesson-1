@@ -1,6 +1,6 @@
 #include "header.h"
 
-std::string random_string_generatorius(size_t ilgis) {
+std::string random_string_generatorius(int ilgis) {
     const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     std::random_device random_device;
     std::mt19937 generator(random_device());
@@ -8,11 +8,54 @@ std::string random_string_generatorius(size_t ilgis) {
 
     std::string randomStr;
     randomStr.reserve(ilgis);
-    for (size_t i = 0; i < ilgis; ++i) {
+    for (int i = 0; i < ilgis; ++i) {
         randomStr += chars[dis(generator)];
     }
     return randomStr;
 }
+
+void TestHiding(const std::string& input, int test_count, int salt_length) {
+    std::vector<std::string> seen_hashes;
+
+    for (int i = 0; i < test_count; ++i) {
+        std::string salt = random_string_generatorius(salt_length);
+        std::string combined = input + salt;
+        std::string hash = HashFunkcija(combined);
+
+        if (std::find(seen_hashes.begin(), seen_hashes.end(), hash) != seen_hashes.end()) {
+            std::cout << "Pasikartojantis hash rastas: " << hash << std::endl;
+            return;
+        }
+        
+        seen_hashes.push_back(hash);
+    }
+    std::cout << "Hiding testas sėkmingas: hash reikšmės unikalios per " << test_count << " iteracijų." << std::endl;
+
+}
+
+void TestPuzzleFriendliness(const std::string& input, int zeroes_needed, int max_iter) {
+    std::string salt = random_string_generatorius(16);
+
+    for (int i = 0; i < max_iter; ++i) {
+        std::string to_hash = input + salt + std::to_string(i);
+        std::string hash = HashFunkcija(to_hash);
+
+        bool match = true;
+        for (int j = 0; j < zeroes_needed; ++j) {
+            if (j >= int(hash.size()) || hash[j] != '0') {
+                match = false;
+                break;
+            }
+        }
+
+        if (match) {
+            std::cout << "Puzzle-friendliness rasta i = " << i << ", hash = " << hash << std::endl;
+            return;
+        }
+    }
+    std::cout << "Puzzle-friendliness neaptikta per " << max_iter << " iteracijų." << std::endl;
+}
+
 
 std::string Keitimas_vieno_simbolio(std::string& tekstas) {
     std::string naujas = tekstas;   
@@ -28,6 +71,7 @@ std::string Keitimas_vieno_simbolio(std::string& tekstas) {
     naujas[pozicija] = naujas_simbolis;
     return naujas;
 }
+
 double diff_bits(const std::string& h1, const std::string& h2) {
     int bit_diff = 0;
     for (size_t i = 0; i < h1.size(); ++i) {
@@ -74,7 +118,7 @@ void TestuokLavinosEfekta(
     std::cout << "Hex lygmenyje - Min: " << hex_min << "%, Max: " << hex_max << "%, Vidurkis: " << (hex_sum / poru_skaicius) << "%\n";
 }
 
-void KoalizijosPatikra(size_t length){
+void KoalizijosPatikra(int length){
     int koaliziju_kiekis = 0;
     for(int i = 0; i < 100000; ++i){
         std::string randomStr1 = random_string_generatorius(length);
