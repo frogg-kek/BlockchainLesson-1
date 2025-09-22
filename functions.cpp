@@ -207,7 +207,7 @@ std::string HashFunkcija(std::string tekstas){
             
             int pasukimai = (3 + kartas) % 8;
             hash[i] = (hash[i] << pasukimai) | (hash[i] >> (8 - pasukimai));
-            hash[i] = (hash[i] * 31 + (kartas * 17)) & 0xFF;
+            hash[i] = (hash[i] * 31 + (kartas * 17)) & 255;
         }
     }
     

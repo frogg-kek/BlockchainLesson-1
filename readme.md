@@ -34,3 +34,7 @@
 # LAVINOS EFEKTO TESTAS
 
 ![alt text](<Screenshot 2025-09-20 at 15.29.28.png>)
+
+# NEGRIZTAMUMO TESTAS
+
+![alt text](<Screenshot 2025-09-23 at 01.26.29.png>)
