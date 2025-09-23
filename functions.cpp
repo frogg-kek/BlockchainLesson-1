@@ -201,7 +201,7 @@ std::string HashFunkcija(std::string tekstas){
         hash[i % HASH_DYDIS] = (hash[i % HASH_DYDIS] << 4) | temp;
     }
 
-    for(int kartas = 0; kartas < 8; kartas++){
+    for(int kartas = 0; kartas < 34; kartas++){
         for(int i = 0; i < HASH_DYDIS; i++){
             hash[i] ^= (hash[(i+7) % HASH_DYDIS] + hash[(i+13) % HASH_DYDIS]) ^ (i * 31);
             
