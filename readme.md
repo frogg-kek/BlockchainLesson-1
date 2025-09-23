@@ -83,3 +83,18 @@
 39: end procedure
 
 ```
+
+# ISVADOS 
+
+Išvados apie hash funkciją:
+Funkcija generuoja vienodo ilgio hash, nepriklausomai nuo įvesties dydžio.
+Funkcija yra deterministinė – ta pati įvestis visada duoda tą pačią išvestį.
+Atlikus kolizijų testą iki 1000 porų, kolizijų nerasta.
+Hash pasižymi avalanche efektu – pakeitus įvestį, išvestis stipriai pasikeičia:
+bitų lygmenyje ~32.9% skirtumas,
+hex lygmenyje ~84.3% skirtumas.
+Funkcija yra praktiškai vienakryptė (negrįžtamumas pavyko).
+Hiding testas parodė, kad hash reikšmės išlieka unikalios per daug iteracijų.
+Puzzle-friendliness testas rodo, kad funkcijoje yra tam tikro atsitiktinumo.
+Bendra išvada:
+Hash funkcija turi pagrindines reikiamas savybes: fiksuotas ilgis, determinizmas, mažai kolizijų, avalanche efektas ir vienakryptiškumas. Ji tinkamai atlieka savo paskirtį, nors bitų lygmenyje avalanche efektas nėra idealus (toliau tobulinant galima jį priartinti prie 50%).
