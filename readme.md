@@ -39,3 +39,47 @@
 
 ![alt text](<Screenshot 2025-09-23 at 01.26.29.png>)
 
+# Pseudo-kodas
+
+```
+1: procedure HashFunction(text, HASH_SIZE)
+2:     hash[0..HASH_SIZE-1] ← 0
+3:     for i ← 0 to |text|-1 do
+4:         hash[i mod HASH_SIZE] ← hash[i mod HASH_SIZE] XOR text[i]
+5:         if text[i] mod 2 = 0 then
+6:             hash[(i*3) mod HASH_SIZE] ← hash[(i*3) mod HASH_SIZE] + 2
+7:         end if
+8:         if text[i] mod 3 = 0 then
+9:             hash[(i*2) mod HASH_SIZE] ← hash[(i*2) mod HASH_SIZE] + 3
+10:        else
+11:            hash[(i*5) mod HASH_SIZE] ← hash[(i*5) mod HASH_SIZE] + 4
+12:        end if
+13:        if hash[i mod HASH_SIZE] > 128 then
+14:            hash[i mod HASH_SIZE] ← 255 - hash[i mod HASH_SIZE]
+15:        end if
+16:        if i mod 5 = 0 then
+17:            hash[(i*13) mod HASH_SIZE] ← hash[(i*13) mod HASH_SIZE] + (text[i] mod 2) + 1
+18:        end if
+19:        temp ← hash[i mod HASH_SIZE] >> 4
+20:        hash[i mod HASH_SIZE] ← (hash[i mod HASH_SIZE] << 4) OR temp
+21:    end for
+22:
+23:    for round ← 0 to 7 do
+24:        for i ← 0 to HASH_SIZE-1 do
+25:            hash[i] ← hash[i] XOR (hash[(i+7) mod HASH_SIZE] 
+26:                        + hash[(i+13) mod HASH_SIZE]) XOR (i*31)
+27:            shift ← (3 + round) mod 8
+28:            hash[i] ← (hash[i] << shift) OR (hash[i] >> (8 - shift))
+29:            hash[i] ← (hash[i] * 31 + round*17) mod 256
+30:        end for
+31:    end for
+32:
+33:    out ← ""
+34:    for i ← 0 to HASH_SIZE-1 do
+35:        c ← hash[i]
+36:        out ← out + hexmap[c >> 4] + hexmap[c AND 0x0F]
+37:    end for
+38:    return out
+39: end procedure
+
+```
