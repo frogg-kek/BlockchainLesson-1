@@ -4,3 +4,4 @@
 
 ![alt text](<Screenshot 2025-09-23 at 12.33.26.png>)
 
+## HASH PALYGINIMAS (Mano ir AI)
