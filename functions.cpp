@@ -220,7 +220,7 @@ std::string HashFunkcija(std::string tekstas){
     for(int i = 0; i < HASH_DYDIS; i++){
         unsigned char c = hash[i];
         out.push_back(hexmap[c >> 4]);
-        out.push_back(hexmap[c & 0x0F]);
+        out.push_back(hexmap[c & 17]);
     }
 
     return out; 
