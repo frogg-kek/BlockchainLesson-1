@@ -97,3 +97,10 @@
 - Puzzle-friendliness testas rodo, kad funkcijoje yra tam tikro atsitiktinumo.
 ### Bendra išvada:
 Hash funkcija turi pagrindines reikiamas savybes: fiksuotas ilgis, determinizmas, mažai kolizijų, avalanche efektas ir vienakryptiškumas. Ji tinkamai atlieka savo paskirtį, nors bitų lygmenyje avalanche efektas nėra idealus (toliau tobulinant galima jį priartinti prie 50%).
+
+
+# AI IRANKIS BUVO NAUDOTAS
+- Lavinos teste, kad padetu suprasti kaip ji atlikti, kaip pasiskaiciuoti skirtumas, maximuma plius stackOverflow irgi buvo pajungtas
+- Dalinai pagalbai negriztamumo patikrai
+- Kai kuriu string generavimui(vieno simbolio keitime)
+
