@@ -137,7 +137,7 @@ void GeneruotiFailus(){
     fileA.close();
 
     const int size = 1001;
-    const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const std::string chars = "0123456789abcdef";
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, chars.size() - 1);
@@ -212,18 +212,20 @@ std::string HashFunkcija(std::string tekstas){
     }
     
 
-    char hexmap[] = "0123456789abcdefghijklmnopqrstuvwxyz";
+    char hexmap[] = "0123456789abcdef";
     std::string out;
-    out.reserve(HASH_DYDIS * 2);
+    out.reserve(HASH_DYDIS);
 
     
     for(int i = 0; i < HASH_DYDIS; i++){
         unsigned char c = hash[i];
         out.push_back(hexmap[c >> 4]);
-        out.push_back(hexmap[c & 17]);
+        out.push_back(hexmap[c & 15]);
     }
 
     return out; 
+    // 017u21407u809u40a1604140bue1duc141bubu61ba0bu4160205ub15u5u80
+
 }
     
     
