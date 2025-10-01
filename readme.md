@@ -115,4 +115,39 @@ Hash funkcija turi pagrindines reikiamas savybes: fiksuotas ilgis, determinizmas
 - Lavinos teste, kad padetu suprasti kaip ji atlikti, kaip pasiskaiciuoti skirtumas, maximuma plius stackOverflow irgi buvo pajungtas
 - Dalinai pagalbai negriztamumo patikrai
 - Kai kuriu string generavimui(vieno simbolio keitime)
+- Lyginimas su sha256
+
+# HASH FUNKCIJŲ PALYGINIMAS: MANO vs SHA256
+
+##  TESTAVIMO REZULTATAI
+
+###  GREIČIO PALYGINIMAS
+| Hash Funkcija | Laikas (μs) | Greičio santykis |
+|---------------|-------------|------------------|
+| **Mano hash** | 87          | **16.95x greičiau** |
+| SHA256        | 1,475       | 1x               |
+
+###  LAVINOS EFEKTO PALYGINIMAS
+| Funkcija | Bitų lygmenyje | Hex lygmenyje |
+|----------|----------------|---------------|
+| **Mano hash** | **42.63%** (idealus ~50%) | 93.80% |
+| **SHA256** | **42.56%** (idealus ~50%) | 93.71% |
+
+###  SAUGUMO TESTŲ REZULTATAI
+| Testas | Mano hash | SHA256 |
+|--------|-----------|---------|
+| **Koalizijos** (100k testų) |  0 koalizijų |  0 koalizijų |
+| **Hiding** (1000 iteracijų) |  Sėkmingas | Sėkmingas |
+| **Puzzle-friendliness** |  Rasta po 9,275 it. |  Nerasta per 10k it. |
+
+##  PAGRINDINĖS IŠVADOS
+
+###  STIPRYBĖS:
+- **Ypatingas greitis**: 17x greičiau nei SHA256
+- **Puikus lavinos efektas**: bitų lygmenyje beveik idealus (42.63% ≈ 50%)
+- **Aukštas saugumas**: 0 koalizijų per 100,000 testų
+- **Geresnė puzzle-friendliness**: randa sprendimus greičiau nei SHA256
+
+###  TOBULINIMO SRITYS:
+- Hex lygmenyje lavinos efektas galėtų būti arčiau 50% (dabar 93.80%)
 
