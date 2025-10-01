@@ -118,16 +118,16 @@ void TestuokLavinosEfekta(
     std::cout << "Hex lygmenyje - Min: " << hex_min << "%, Max: " << hex_max << "%, Vidurkis: " << (hex_sum / poru_skaicius) << "%\n";
 }
 
-void KoalizijosPatikra(int length){
+void KoalizijosPatikra(int length, std::function<std::string(const std::string&)> hashFunc, const std::string& pavadinimas){
     int koaliziju_kiekis = 0;
     for(int i = 0; i < 100000; ++i){
         std::string randomStr1 = random_string_generatorius(length);
         std::string randomStr2 = random_string_generatorius(length);
-        if(HashFunkcija(randomStr1) == HashFunkcija(randomStr2)){
+        if(hashFunc(randomStr1) == hashFunc(randomStr2)){
             koaliziju_kiekis++;
         }
     }
-    std::cout << "Koalizaciju kiekis " << length << " simboliu: " << koaliziju_kiekis << std::endl;
+    std::cout << pavadinimas << " koaliziju kiekis " << length << " simboliu: " << koaliziju_kiekis << std::endl;
 }
 
 void GeneruotiFailus(){
@@ -255,6 +255,71 @@ std::string SkaidytiFailaIrDalykes(const std::string& failoPav, int eiluciuSkaic
     std::cout << "Nuskaityta " << eiluciuSkaitiklis << " eilučių iš failo." << std::endl;
     
     return rezultatas;
+}
+
+std::string SHA256Hash(const std::string& tekstas) {
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, tekstas.c_str(), tekstas.size());
+    SHA256_Final(hash, &sha256);
+    
+    std::stringstream ss;
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        ss << std::hex << std::setw(2) << std::setfill('0') << (int)hash[i];
+    }
+    return ss.str();
+}
+
+void PalyginkHashFunkcijas(const std::string& tekstas) {
+    std::cout << "\n=== HASH FUNKCIJŲ PALYGINIMAS ===" << std::endl;
+    std::cout << "Testuojamas tekstas: " << tekstas.substr(0, 50) << (tekstas.length() > 50 ? "..." : "") << std::endl;
+    
+    // Laiko matavimas - Jūsų hash
+    auto start1 = std::chrono::high_resolution_clock::now();
+    std::string mano_hash = HashFunkcija(tekstas);
+    auto end1 = std::chrono::high_resolution_clock::now();
+    auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1);
+    
+    // Laiko matavimas - SHA256
+    auto start2 = std::chrono::high_resolution_clock::now();
+    std::string sha256_hash = SHA256Hash(tekstas);
+    auto end2 = std::chrono::high_resolution_clock::now();
+    auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2);
+    
+    std::cout << "\n--- HASH REZULTATAI ---" << std::endl;
+    std::cout << "Mano hash:  " << mano_hash << std::endl;
+    std::cout << "SHA256:     " << sha256_hash << std::endl;
+    
+    std::cout << "\n--- GREIČIO PALYGINIMAS ---" << std::endl;
+    std::cout << "Mano hash laikas:  " << duration1.count() << " μs" << std::endl;
+    std::cout << "SHA256 laikas:     " << duration2.count() << " μs" << std::endl;
+    std::cout << "Greičio santykis:  " << (double)duration2.count() / duration1.count() << "x" << std::endl;
+    
+    std::cout << "\n--- LAVINOS EFEKTO PALYGINIMAS ---" << std::endl;
+    std::cout << "Testuojama mano hash funkcija:" << std::endl;
+    TestuokLavinosEfekta(HashFunkcija, 10000, 32);
+    
+    std::cout << "\nTestuojama SHA256:" << std::endl;
+    TestuokLavinosEfekta(SHA256Hash, 10000, 32);
+    
+    std::cout << "\n--- KOALIZIJŲ PALYGINIMAS ---" << std::endl;
+    KoalizijosPatikra(32, HashFunkcija, "Mano hash funkcija");
+    KoalizijosPatikra(32, SHA256Hash, "SHA256");
+    
+    std::cout << "\n--- HIDING TESTO PALYGINIMAS ---" << std::endl;
+    std::cout << "Mano hash funkcija:" << std::endl;
+    TestHiding(tekstas, 1000, 16);
+    
+    std::cout << "SHA256:" << std::endl;
+    TestHiding(tekstas, 1000, 16);
+    
+    std::cout << "\n--- PUZZLE-FRIENDLINESS PALYGINIMAS ---" << std::endl;
+    std::cout << "Mano hash funkcija (ieškoma 3 nulių):" << std::endl;
+    TestPuzzleFriendliness(tekstas, 3, 10000);
+    
+    std::cout << "SHA256 (ieškoma 3 nulių):" << std::endl;
+    TestPuzzleFriendliness(tekstas, 3, 10000);
 }
 
 

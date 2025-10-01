@@ -12,9 +12,11 @@ int main() {
         
         std::cout << std::endl;
 
-    std::cout << "Pasirinkite ką norėtumete hashuoti:" << std::endl;
-    std::cout << "1 - Įrašytą tekstą" << std::endl;
-    std::cout << "2 - .txt failą" << std::endl;
+    std::cout << "Pasirinkite veiksmą:" << std::endl;
+    std::cout << "1 - Hashinti įvestą tekstą" << std::endl;
+    std::cout << "2 - Hashinti failą" << std::endl;
+    std::cout << "3 - Palyginti hash funkcijas" << std::endl;
+    std::cout << "4 - Išeiti" << std::endl;
     
     int choice;
     bool patikra = false;
@@ -22,7 +24,7 @@ int main() {
     while (!patikra){
         std::cout<< "Jūsų pasirinkimas: ";
         std::cin >> choice;
-        if(choice < 1 || choice > 2){
+        if(choice < 1 || choice > 4){
             std::cout << "Klaida! Įveskite skaičių." << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -96,6 +98,14 @@ int main() {
         }
         }
         break;
+        case 3:
+            {
+            std::cout << "Įveskite tekstą palyginimui: ";
+            std::string palyginimo_tekstas;
+            std::getline(std::cin, palyginimo_tekstas);
+            PalyginkHashFunkcijas(palyginimo_tekstas);
+            }
+            break;
     }
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -148,7 +158,7 @@ int main() {
                 int length;
                 std::cout << "Įveskite simbolių kiekį, kurį norėtumėte sugeneruoti: ";
                 std::cin >> length;
-                KoalizijosPatikra(length);
+                KoalizijosPatikra(length, HashFunkcija, "Mano hash funkcija");
                 }
                 break;
             case 2:
