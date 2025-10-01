@@ -10,6 +10,7 @@
 #include <random>
 #include <vector>
 #include <algorithm>
+#include <functional>
 
 const int HASH_DYDIS = 32;
 
@@ -28,6 +29,6 @@ void TestuokLavinosEfekta(
 );
 void TestPuzzleFriendliness(const std::string& input, int zeroes_needed = 2, int max_iter = 100000);
 void TestHiding(const std::string& input, int test_count = 1000, int salt_length = 16);
-
+std::string SkaidytiFailaIrDalykes(const std::string& failoPav, int eiluciuSkaicius);
 
 #endif

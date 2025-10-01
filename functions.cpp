@@ -227,5 +227,34 @@ std::string HashFunkcija(std::string tekstas){
     // 017u21407u809u40a1604140bue1duc141bubu61ba0bu4160205ub15u5u80
 
 }
+
+std::string SkaidytiFailaIrDalykes(const std::string& failoPav, int eiluciuSkaicius) {
+    std::ifstream failas(failoPav);
     
+    if (!failas.is_open()) {
+        std::cout << "Nepavyko atidaryti failo: " << failoPav << std::endl;
+        return "";
+    }
     
+    std::string eilute;
+    std::string rezultatas;
+    int eiluciuSkaitiklis = 0;
+    
+    while (std::getline(failas, eilute) && eiluciuSkaitiklis < eiluciuSkaicius) {
+        rezultatas += eilute + "\n";
+        eiluciuSkaitiklis++;
+    }
+    
+    // Pašaliname paskutinį \n simbolį
+    if (!rezultatas.empty() && rezultatas.back() == '\n') {
+        rezultatas.pop_back();
+    }
+    
+    failas.close();
+    
+    std::cout << "Nuskaityta " << eiluciuSkaitiklis << " eilučių iš failo." << std::endl;
+    
+    return rezultatas;
+}
+
+

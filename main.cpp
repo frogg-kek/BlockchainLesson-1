@@ -63,13 +63,14 @@ int main() {
                 std::cout << "2 - >1000_simboliu.txt" << std::endl;
                 std::cout << "3 - >1000_skirtingu_simboliu.txt" << std::endl;
                 std::cout << "4 - failas_empty.txt" << std::endl;
+                std::cout << "5 - konstitucija.txt (įveskite eilučių skaičių)" << std::endl;
             }
 
         bool patikra2 = false;
         while (!patikra2){
             std::cout<< "Jūsų pasirinkimas: ";
             std::cin >> variantas;
-            if(variantas < 1 || variantas > 4){
+            if(variantas < 1 || variantas > 5){
                 std::cout << "Klaida! Įveskite skaičių." << std::endl;
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -84,6 +85,14 @@ int main() {
             case 2 : tekstas = FailoSkaitymas(">1000_simboliu.txt"); break;
             case 3 : tekstas = FailoSkaitymas(">1000_skirtingu_simboliu.txt"); break;
             case 4 : tekstas = FailoSkaitymas("failas_empty.txt"); break;
+            case 5 : 
+                {
+                int eiluciuSkaicius;
+                std::cout << "Įveskite eilučių skaičių: ";
+                std::cin >> eiluciuSkaicius;
+                tekstas = SkaidytiFailaIrDalykes("konstitucija.txt", eiluciuSkaicius);
+                }
+                break;
         }
         }
         break;
