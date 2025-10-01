@@ -35,6 +35,18 @@
 
 ![alt text](<Screenshot 2025-09-20 at 15.29.28.png>)
 
+# KONSTITUCIJOS EFEKTYVUMAS
+
+### 1 eilutė
+![alt text](<Screenshot 2025-10-01 at 18.15.04.png>)
+### 10 eilutė
+![alt text](<Screenshot 2025-10-01 at 18.15.39.png>)
+### 100 eilutė
+![alt text](<Screenshot 2025-10-01 at 18.16.17.png>)
+### 500 eilutė
+![alt text](<Screenshot 2025-10-01 at 18.17.28.png>)
+
+
 # NEGRIZTAMUMO TESTAS
 
 ![alt text](<Screenshot 2025-09-23 at 01.26.29.png>)
