@@ -76,10 +76,10 @@ double diff_bits(const std::string& h1, const std::string& h2) {
     int bit_diff = 0;
     for (size_t i = 0; i < h1.size(); ++i) {
         unsigned char c1 = h1[i], c2 = h2[i];
-        for (int b = 0; b < 8; ++b)
+        for (int b = 0; b < 4; ++b)
             bit_diff += ((c1 >> b) & 1) != ((c2 >> b) & 1);
     }
-    return bit_diff * 100.0 / (h1.size() * 8);
+    return bit_diff * 100.0 / (h1.size() * 4);
 }
 
 double diff_hex(const std::string& h1, const std::string& h2) {
